@@ -36,12 +36,17 @@ const login = async (req, res) => {
 
   if (existingToken) {
     const { isValid } = existingToken;
+
     if (!isValid) {
       return res.status(401).json({error: 'Invalid Credentials'});
     }
+
     refreshToken = existingToken.refreshToken;
     attachCookiesToResponse({ res, user: tokenUser, refreshToken });
-    return res.status(200).json({ user: tokenUser });
+    
+    const userInfo = {...tokenUser, position: member.position, assembly: member.assembly };
+
+    return res.status(200).json({ user: userInfo });
   }
 
   refreshToken = crypto.randomBytes(40).toString('hex');
@@ -52,8 +57,9 @@ const login = async (req, res) => {
   await Token.create(userToken);
 
   attachCookiesToResponse({ res, user: tokenUser, refreshToken });
+  const userInfo = {...tokenUser, position: member.position, assembly: member.assembly };
 
-  res.status(200).json({ user: tokenUser });
+  res.status(200).json({ user:  userInfo});
 };
 
 
