@@ -37,6 +37,10 @@ const MemberSchema = new mongoose.Schema(
     },
     position: { type: String, required: true },
     assembly: {  type: String, required: true },
+    phoneNumber: {  type: String, required: true },
+    dob: {  type: String, required: true },
+    address: {  type: String, required: true },
+    maritalStatus: {  type: String, required: true },
   },
   {
     timestamps: true,
