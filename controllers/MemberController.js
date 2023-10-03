@@ -91,6 +91,21 @@ const updateMember = async (req, res) => {
   res.status(200).json({ user: tokenMember });
 };
 
+const updateSingleMember = async (req, res) => {
+
+  const member = await Member.findOneAndUpdate(
+    { _id: req.params.id },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!member) {
+    return res.status(404).json({error: `No member with id : ${req.params.id}`})
+  }
+
+  res.status(200).json({ user: member });
+};
+
 const updateMemberPassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   if (!oldPassword || !newPassword) {
@@ -178,4 +193,5 @@ module.exports = {
   createMember,
   getAllPosition,
   getAllAssembly,
+  updateSingleMember,
 };

@@ -13,6 +13,7 @@ const {
   createMember,
   getAllPosition,
   getAllAssembly,
+  updateSingleMember,
 } = require('../controllers/MemberController');
 
 router.route('/createMember').post( createMember);
@@ -25,7 +26,7 @@ router.route('/showMe').get(authenticateMember, showCurrentMember);
 router.route('/updateMember').put(authenticateMember, updateMember);
 router.route('/updateMemberPassword').put(authenticateMember, updateMemberPassword);
 
-router.route('/:id').get(authenticateMember, getSingleMember);
+router.route('/:id').get(authenticateMember, getSingleMember).put(authenticateMember, authorizePermissions('admin'), updateSingleMember);
 router.route('/positions/list').get(getAllPosition);
 router.route('/assembly/list').get(getAllAssembly);
 
