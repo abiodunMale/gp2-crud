@@ -16,7 +16,7 @@ const validateMemberInput = ({ title, name, email, role, position, assembly }) =
          assembly;
 };
 
-// Helper function to validate email
+
 const isValidEmail = (email)  => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -72,7 +72,7 @@ const showCurrentMember = async (req, res) => {
 
   res.status(200).json({ user: member });
 };
-// update Member with Member.save()
+
 const updateMember = async (req, res) => {
   const { email, name } = req.body;
   if (!email || !name) {
@@ -179,19 +179,3 @@ module.exports = {
   getAllPosition,
   getAllAssembly,
 };
-
-// update Member with findOneAndUpdate
-// const updateMember = async (req, res) => {
-//   const { email, name } = req.body;
-//   if (!email || !name) {
-//     throw new CustomError.BadRequestError('Please provide all values');
-//   }
-//   const Member = await Member.findOneAndUpdate(
-//     { _id: req.Member.MemberId },
-//     { email, name },
-//     { new: true, runValidators: true }
-//   );
-//   const tokenMember = createTokenMember(Member);
-//   attachCookiesToResponse({ res, Member: tokenMember });
-//   res.status(StatusCodes.OK).json({ Member: tokenMember });
-// };
