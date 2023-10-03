@@ -12,7 +12,7 @@ const authRouter = require('./routes/authRoutes');
 const memberRouter = require('./routes/memberRoutes');
 const taskRouter = require('./routes/taskRoutes');
 const eventRouter = require('./routes/eventRoutes');
-const announcementRouter = require('./routes/announcement');
+const announcementRouter = require('./routes/announcementRoutes');
 
 const corsOptions = {
   origin: true, //included origin as true

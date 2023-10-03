@@ -59,9 +59,9 @@ const getSingleMember = async (req, res) => {
     return res.status(404).json({error: `No member with id : ${req.params.id}`})
   }
 
-  if(!checkPermissions(res, req.user, member._id)){
-    return res.status(403).json({error: 'Not authorized to access this information'});
-  }
+  // if(!checkPermissions(res, req.user, member._id)){
+  //   return res.status(403).json({error: 'Not authorized to access this information'});
+  // }
   
   res.status(200).json({ member });
 };
